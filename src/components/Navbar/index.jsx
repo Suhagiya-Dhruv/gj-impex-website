@@ -1,18 +1,10 @@
 import { Link } from "react-router-dom";
 import Style from "./style.module.css";
 import logo from "../../assets/logofull.png";
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-} from "@mui/material";
 import { useEffect, useState } from "react";
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
 
   const handleScroll = () => {
     const offset = window.scrollY;
@@ -21,18 +13,7 @@ function Navbar() {
     } else {
       setScrolled(false);
     }
-  };
-
-  const toggleDrawer = (newOpen) => () => {
-    setOpen(newOpen);
-  };
-
-  const routes = [
-    { label: "Home", path: "/" },
-    { label: "Products", path: "/products" },
-    { label: "About", path: "/about" },
-    { label: "Contact Us", path: "/contact-us" },
-  ];
+  }
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -77,4 +58,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Navbar
