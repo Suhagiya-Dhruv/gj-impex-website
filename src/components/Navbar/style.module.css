@@ -11,8 +11,6 @@
     backdrop-filter: blur(2px);
 }
 
-
-
 .scrolled {
     background: rgba(255, 255, 255, 1);
 }
@@ -75,7 +73,7 @@
     display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 426px) {
     .menu_bar {
         display: none;
     }

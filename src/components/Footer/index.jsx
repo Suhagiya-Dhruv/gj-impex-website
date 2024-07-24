@@ -35,9 +35,9 @@ const Footer = () => {
         <div className={styles.font}>
           <h3 className='flex items-center'>Quick Links</h3>
           <div className='flex flex-col gap-4'>
-            <Link to="/products" className="text-gray-700 no-underline flex items-center gap-2"><MdProductionQuantityLimits className='text-2xl' />Products</Link>
-            <Link to="/about" className="text-gray-700 no-underline flex items-center gap-2"><BsInfoCircle className='text-2xl' />About</Link>
-            <Link to="/contact-us" className="text-gray-700 no-underline flex items-center gap-2"><RiContactsBook3Line className='text-2xl' />Contact Us</Link>
+            <Link to="/products" className="text-white no-underline flex items-center gap-2"><MdProductionQuantityLimits className='text-2xl' />Products</Link>
+            <Link to="/about" className="text-white no-underline flex items-center gap-2"><BsInfoCircle className='text-2xl' />About</Link>
+            <Link to="/contact-us" className="text-white no-underline flex items-center gap-2"><RiContactsBook3Line className='text-2xl' />Contact Us</Link>
           </div>
         </div>
       </div>

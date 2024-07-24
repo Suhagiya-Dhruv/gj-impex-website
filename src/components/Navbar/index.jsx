@@ -2,9 +2,36 @@ import { Link } from "react-router-dom";
 import Style from "./style.module.css";
 import logo from "../../assets/logofull.png";
 import { useEffect, useState } from "react";
+import {
+  Box,
+  Drawer,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import { styled } from "@mui/material/styles";
+import { productList } from "../../contant";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+
+const HtmlTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))(({ theme }) => ({
+  [`& .${tooltipClasses.tooltip}`]: {
+    backgroundColor: "rgba(255, 255, 255, 1)",
+    color: "rgba(0, 0, 0, 0.87)",
+    backdropFilter: "blur(5px)",
+    maxWidth: 250,
+    fontSize: theme.typography.pxToRem(12),
+  },
+}));
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
 
   const handleScroll = () => {
     const offset = window.scrollY;
@@ -13,7 +40,41 @@ function Navbar() {
     } else {
       setScrolled(false);
     }
-  }
+  };
+
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
+
+  const routes = [
+    { label: "Home", path: "/" },
+    { label: "Products", path: "/products" },
+    { label: "About", path: "/about" },
+    { label: "Contact Us", path: "/contact-us" },
+  ];
+
+  const DrawerList = (
+    <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+      <List>
+        {routes.map((route, index) => (
+          <ListItem key={route.label} disablePadding>
+            <Link
+              to={route.path}
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+                width: "100%",
+              }}
+            >
+              <ListItemButton>
+                <ListItemText primary={route.label} />
+              </ListItemButton>
+            </Link>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -36,6 +97,12 @@ function Navbar() {
           <img src={logo} alt="logo" width="100%" />
         </Link>
       </div>
+      <div className={Style.manu_burgur} onClick={toggleDrawer(true)}>
+        <MenuIcon />
+      </div>
+      <Drawer anchor="right" open={open} onClose={toggleDrawer(false)}>
+        {DrawerList}
+      </Drawer>
       <ul className={`${Style.menu_bar} flex space-x-4 gap-10 items-center`}>
         <li>
           <Link to="/">Home</Link>
@@ -43,7 +110,6 @@ function Navbar() {
         </li>
         <li className="flex items-center">
           <Link to="/products">Products</Link>
-          <div className={Style.borderBottom}></div>
         </li>
         <li>
           <Link to="/about">About</Link>
@@ -58,4 +124,4 @@ function Navbar() {
   );
 }
 
-export default Navbar
+export default Navbar;
